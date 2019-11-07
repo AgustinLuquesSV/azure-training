@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.IO;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats;
@@ -44,16 +46,17 @@ namespace FunctionReSize
             { ImageSize.Small,      (640, 400) },
             { ImageSize.Medium,     (800, 600) }
         };
+    }
 
-
-
-        //[FunctionName("HelloWorld")]
-        //public static void Run(
-        //    [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
-        //    ILogger log
-        //)
-        //{
-        //    log.LogInformation("Hello World");
-        //}
+    public static class HelloWorld
+    {
+        [FunctionName("HelloWorld")]
+        public static void Run(
+            [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
+            ILogger log
+        )
+        {
+            log.LogInformation("Hello World");
+        }
     }
 }
